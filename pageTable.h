@@ -10,9 +10,12 @@ typedef struct pageTable{
     unsigned int entryCount[levelCount];
 };
 
-typedef struct map{
-    unsigned int nextLevel[levelCount];
-    map map[];
+typedef struct level{
+    unsigned int *pageTablePtr;
+    unsigned int depth;
+    unsigned int nextLevelPtr[levelCount];
+
+    unsigned int map[];
 };
 
 pageTable pageInsert(pageTablePtr, address, frame);
