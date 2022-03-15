@@ -1,21 +1,29 @@
 #ifndef PAGETABLE_H
 #define PAGETABLE_H
 
+#define CACHE_TLB 0
+
 #include <stdlib.h>
 
 typedef struct pageTable{ 
-    unsigned int levelCount;  
-    unsigned int bitShift[levelCount];
-    unsigned int bitMask[levelCount];
-    unsigned int entryCount[levelCount];
+    unsigned int depth = 0;
+    int *levelCount; 
+    int bitShift[levelCount];
+    int bitMask[];
+    int entryCount[];
 };
 
-typedef struct map{
-    unsigned int nextLevel[levelCount];
-    map map[];
+typedef struct Level{
+    Level* nextLevel[];
+    int map[];
 };
 
-pageTable pageInsert(pageTablePtr, address, frame);
+
+void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int frame);
+Map* pageLookup(pageTable *pagetable, unsigned int virtualAddress);
+unsigned int virtualAddressToPageNum (unsigned int virtualAddress, unsigned int mask, unsigned int shift); 
+
+
 
 
 

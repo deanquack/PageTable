@@ -15,13 +15,7 @@ CXXFLAGS=-std=c++11 -g
 dicttest : dicttree.o countwords.o populatetree.o main.o
 	$(CXX) $(CXXFLAGS) -o dicttest $^ -lpthread
 
-dicttree.o : dicttree.h dicttree.cpp
 
-countwords.o : countwords.h countwords.cpp
-
-populatetree.o : populatetree.h populatetree.cpp
-
-main.o : dicttree.h main.cpp
 
 clean :
 	rm *.o
