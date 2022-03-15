@@ -5,8 +5,8 @@
 typedef struct pageTable{ 
     unsigned int levelCount;  
     unsigned int bitmask[levelCount];
-    unsigned int bitShift;
-    unsigned int entryCount;
+    unsigned int bitShift[levelCount];
+    unsigned int entryCount[levelCount];
 };
 
 typedef struct level{
