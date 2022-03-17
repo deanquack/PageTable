@@ -30,22 +30,26 @@ pageTable* node(){
 //insert the pagetable
 void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int frame){
     pageTable* head = pagetable;
+    level* map->
     head->entryCount[];
     head->levelCount;
     head->bitShift[];
     head->
-    while(virtualAddress != 0){
+    while(virtualAddress[frame] != 0){
         int index = virtualAddressToPageNum (virtualAddress, mask, shift); 
-        if(virtualAddress[frame] = 0){
-            pageTable* newNode = node();
+        if(virtualAddress[frame] == 0){
+            pageTable* newNode = level->map;
             head->levelCount[frame] = newNode;
-        } 
+        }
+        frame++; 
     }
-};
+    
+}
 
 
 Map* pageLookup(pageTable *pagetable, unsigned int virtualAddress){
     
+    return NULL;
 }
 
 /*Given a virtual address, apply the given bit mask and shift right by the

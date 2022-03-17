@@ -13,12 +13,11 @@ typedef struct level{
     pageTable *pageTablePtr;
     unsigned int depth;
     level *nextLevelPtr[levelCount];
-
     unsigned int map[];
 };
 
-pageTable pageInsert(pageTablePtr, address, frame);
-
+void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int frame);
+Map* pageLookup(pageTable *pagetable, unsigned int virtualAddress);
 
 
 
