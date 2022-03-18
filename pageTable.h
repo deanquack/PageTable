@@ -1,5 +1,6 @@
 #ifndef PAGETABLE_H
 #define PAGETABLE_H
+#define levelCount
 
 #include <stdlib.h>
 typedef struct pageTable{ 

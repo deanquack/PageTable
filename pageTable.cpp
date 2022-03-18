@@ -30,16 +30,11 @@ pageTable* node(){
 //insert the pagetable
 void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int frame){
     pageTable* head = pagetable;
-    level* map->
-    head->entryCount[];
-    head->levelCount;
-    head->bitShift[];
-    head->
-    while(virtualAddress[frame] != 0){
+    while(virtualAddress[&frame] != 0){
         int index = virtualAddressToPageNum (virtualAddress, mask, shift); 
-        if(virtualAddress[frame] == 0){
-            pageTable* newNode = level->map;
-            head->levelCount[frame] = newNode;
+        if(virtualAddress[&frame] == 0){
+            pageTable* newNode = node();
+            head->levelCount[&frame] = newNode;
         }
         frame++; 
     }
@@ -47,11 +42,11 @@ void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int 
 }
 
 
-Map* pageLookup(pageTable *pagetable, unsigned int virtualAddress){
+/*Map* pageLookup(pageTable *pagetable, unsigned int virtualAddress){
     
     return NULL;
 }
-
+*/
 /*Given a virtual address, apply the given bit mask and shift right by the
 given number of bits. Returns the virtual page number. This function can
 be used to access the page number of any level by supplying the

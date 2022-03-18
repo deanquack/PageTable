@@ -5,7 +5,7 @@ Dean Quach, cssc1445 & Gian Kyle Nicolas, csscXXXX
 Copyright (c) 2022 Dean Quach. Gian Nicolas. All rights reserved.
 */
 
-#include "tracereader.c"
+#include "tracereader.cpp"
 //#include "output_mode_helpers.h"
 //#include "pageTable.h"
 #include <iostream>
@@ -19,30 +19,33 @@ Copyright (c) 2022 Dean Quach. Gian Nicolas. All rights reserved.
 #include <string.h>
 #include <sys/stat.h>
 #include <io.h>
-#include <unistd.h>
+//#include <unistd.h>
 using namespace std;
 
 main(int argc, char** argv){
 
     //pageTable page;
-    //OutputOptionsType* opt = new OutputOptionsType();
+    //OutputOptionsType* opt;
 
     int option;
     bool BADFLAG = false;
     int numOfProcesses = 0;
     int cacheTLB;
-
+    //pageTable *pagetable = new pageTable();
     p2AddrTr ptr;
     unsigned int vAddr;
-    std::ifstream trace(argv[1]);
-    FILE* trace2 = fopen(argv[1], "r");
+    unsigned int frame = 0;
+    FILE* trace2 = fopen("trace.tr", "r");
 
+    if(NextAddress(trace2, &ptr)){
+        vAddr = ptr.addr;
+        cout << vAddr << endl;
+    }    
     while (!feof(trace2)){ // iterate over trace file 
-        //while(NextAddress(trace2, &ptr) != 0){
-            if(NextAddress(trace2, &ptr)){
-                vAddr = ptr.addr;
-                cout << vAddr << endl;
-            }
-        //}
+        if(NextAddress(trace2, &ptr)){
+            vAddr = ptr.addr;
+            printf("%d \n", vAddr);
+            //pageInsert(pageTable, vAddr, frame);
+        }
     }
 }
