@@ -1,5 +1,14 @@
-#include <iostream>
+/*CS480, Spring 2022
+Assignment #3, Paging with Multilevel Page table and TLB
+FILE: main.cpp
+Dean Quach, cssc1445 & Gian Kyle Nicolas, csscXXXX
+Copyright (c) 2022 Dean Quach. Gian Nicolas. All rights reserved.
+*/
+
 #include "tracereader.c"
+#include "output_mode_helpers.h"
+//#include "pageTable.cpp"
+#include <iostream>
 #include <fstream>
 #include <stdio.h>
 #include <string>
@@ -9,48 +18,37 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <io.h>
 #include <unistd.h>
-#define BADFLAG 1
 using namespace std;
 
-int main(int argc, char** argv){
-    std::string line;
-    int numlines = 0;
-    int count = 0;
+main(int argc, char** argv){
+
+    //pageTable page;
+    //OutputOptionsType* opt;
+
     int option;
-    int addresses;
-    char ptrArr[300]; //for dictionary
-    char *c;
+    bool BADFLAG = false;
+    int numOfProcesses = 0;
+    int cacheTLB;
+    //pageTable *pagetable = new pageTable();
     p2AddrTr ptr;
     unsigned int vAddr;
-    //std::ifstream trace(argv[1]);
+    unsigned int frame = 0;
+    unsigned int mask = 0x00000FFF;
+    unsigned int shift = 24;
     FILE* trace2 = fopen("trace.tr", "r");
 
-  while ( (option = getopt(argc, argv, "n:o:")) != -1) { 
-    switch (option) { 
-    case 'n': /* Number of addresses to process */ 
-      // optarg will contain the string following -n  
-      // Process appropriately (e.g. convert to integer atoi(optarg))
-      addresses = option;
-      break; 
-    case 'o': /* produce map of pages */ 
-      // optarg contains the output method... 
-      break; 
-    default: 
-      // print something about the usage and die... 
-      exit(BADFLAG);  // BADFLAG is an error # defined in a header 
-    } 
- }
-  int idx = optind;
-  while (argv[idx] != NULL) {
-    cout << argv[idx] << endl;
-    idx++;
-  }
+    while()
+
     while (!feof(trace2)){ // iterate over trace file 
-        if(NextAddress(trace2, &ptr) && count <= addresses){
+        if(NextAddress(trace2, &ptr)){
             vAddr = ptr.addr;
-            cout << vAddr << endl;
-            count++;
+            unsigned int page = vAddr & mask;
+            unsigned int pageAddr = page >> shift;
+            printf("%08X -> %p\n", vAddr, page);
+        //  virtualAddressToPageNum(vAddr, mask, shift); //bitmask and shift
+            //pageInsert(pageTable, vAddr, frame);
         }
     }
 }

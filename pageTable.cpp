@@ -20,7 +20,7 @@ Copyright (c) 2022 Dean Quach. Gian Nicolas. All rights reserved.
 #include <sys/stat.h>
 #include <io.h>
 using namespace std;
-
+/*
 //constructor for creating the node. 
 pageTable* node(){
     pageTable* tmp = new pageTable();
@@ -30,9 +30,9 @@ pageTable* node(){
 //insert the pagetable
 void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int frame){
     pageTable* head = pagetable;
+    frame = NULL;
     while(virtualAddress[&frame] != 0){
-        int index = virtualAddressToPageNum (virtualAddress, mask, shift); 
-        if(virtualAddress[&frame] == 0){
+        if(virtualAddress[index] == 0){
             pageTable* newNode = node();
             head->levelCount[&frame] = newNode;
         }
@@ -51,9 +51,9 @@ void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int 
 given number of bits. Returns the virtual page number. This function can
 be used to access the page number of any level by supplying the
 appropriate parameters.*/
-unsigned int virtualAddressToPageNum (unsigned int virtualAddress, unsigned int mask, unsigned int shift){
-    int virtualPageNum = 0;
-
+unsigned int virtualAddressToPageNum (unsigned int virtualAddress, unsigned int mask, unsigned int shift){;
+    unsigned int virtualPageNum = virtualAddress & mask;
+    virtualPageNum = virtualPageNum >> shift;
     return virtualPageNum;
 }
 
