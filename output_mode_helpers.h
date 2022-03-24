@@ -1,6 +1,7 @@
 #ifndef OUTPUT_MODE_HELPERS_H
 #define OUTPUT_MODE_HELPERS_H
 
+
 /*
  * Compilation notes:
  * C compilers:

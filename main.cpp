@@ -28,7 +28,7 @@ main(int argc, char** argv){
     //pageTable page;
     //OutputOptionsType* opt;
 
-    int option;
+    int Option;
     bool BADFLAG = false;
     int numOfProcesses = 0;
     int cacheTLB;
@@ -36,9 +36,17 @@ main(int argc, char** argv){
     p2AddrTr ptr;
     unsigned int vAddr;
     unsigned int frame = 0;
-    unsigned int mask = 0x000FFFFF;
+    unsigned int mask = NULL;
     unsigned int shift = 24;
     FILE* trace2 = fopen("trace.tr", "r");
+
+    while ( (Option = getopt(argc, argv, "n:")) != -1) {
+        switch (option){
+            case 'n':
+                numOfProcesses = atoi(getopt);
+        }
+
+    }
    
     while (!feof(trace2)){ // iterate over trace file 
         if(NextAddress(trace2, &ptr)){
