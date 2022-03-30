@@ -7,9 +7,9 @@
 #include <stdint.h>
 #else
 /* C includes */
-#include <inttypes.h>
 #endif 
-
+#include <inttypes.h>
+#include <stdio.h>
 
 typedef struct BYUADDRESSTRACE
 {

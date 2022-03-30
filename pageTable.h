@@ -21,9 +21,13 @@ struct level{
     unsigned int map[];
 };
 
-pageTable* node(); //make a pageTable pointer node
+struct Map{
+    unsigned int frame;
+    bool validBit;
+};
+
 void pageInsert(pageTable *pagetable, unsigned int virtualAddress, unsigned int frame);
-int virtualAddressToPageNum (pageTable *pagetable, unsigned int virtualAddress, unsigned int mask, unsigned int shift);
-level pageLookup();
-unsigned int bitmask(unsigned VirtualAddress, unsigned int mask, unsigned int shift);
+unsigned int virtualAddressToPageNum(unsigned int virtualAddress, unsigned int mask, unsigned int shift);
+Map* pageLookup(pageTable *pagetable, unsigned int virtualAddress);
+Map* map(unsigned int frame, bool ValidBit);
 #endif
